@@ -23,7 +23,7 @@ pub fn day06_main() -> Result<()> {
     }
 
     assert_eq!(569999, part1_solution(&instructions));
-    assert_eq!!(17836115, part2_solution(&instructions));
+    assert_eq!(17836115, part2_solution(&instructions));
 
     Ok(())
 }
