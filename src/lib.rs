@@ -1,11 +1,13 @@
-// clippy considers functions only called in tests to be dead code, but this entire crate is _just_
-// tests, and I don't want a bunch of dead code warnings polluting my clippy.
-#[allow(dead_code)]
-mod day01;
-mod day02;
-mod day03;
-mod day04;
-mod day05;
+pub mod grid2d;
+
+pub mod day01;
+pub mod day02;
+pub mod day03;
+pub mod day04;
+pub mod day05;
+pub mod day06;
+
+pub use grid2d::Grid2D;
 
 use std::io;
 
