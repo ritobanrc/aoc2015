@@ -12,14 +12,14 @@ pub fn day01_main() -> Result<()> {
     Ok(())
 }
 
-fn part1_solution(input: &[u8]) -> Result<i64> {
+fn part1_solution(input: &str) -> Result<i64> {
     let mut count = 0;
-    for &c in input {
+    for c in input.chars() {
         match c {
-            b'(' => {
+            '(' => {
                 count += 1;
             }
-            b')' => {
+            ')' => {
                 count -= 1;
             }
             _ => return Err(anyhow!("Unexpected character: {}", c)),
@@ -28,14 +28,14 @@ fn part1_solution(input: &[u8]) -> Result<i64> {
     Ok(count)
 }
 
-fn part2_solution(input: &[u8]) -> Result<usize> {
+fn part2_solution(input: &str) -> Result<usize> {
     let mut count = 0;
-    for (i, &c) in input.iter().enumerate() {
+    for (i, c) in input.chars().enumerate() {
         match c {
-            b'(' => {
+            '(' => {
                 count += 1;
             }
-            b')' => {
+            ')' => {
                 count -= 1;
             }
             _ => return Err(anyhow!("Unexpected character: {}", c)),
