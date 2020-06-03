@@ -1,7 +1,7 @@
-use anyhow::{anyhow, Result};
+use anyhow::Result;
 use itertools::Itertools;
 
-#[test]
+crate::aoc!(05);
 pub fn day05_main() -> Result<()> {
     use crate::load_input;
     let input = load_input(5)?;

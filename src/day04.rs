@@ -1,11 +1,14 @@
 use md5;
 
-#[test]
-fn day04_main() {
+crate::aoc!(04);
+
+pub fn day04_main() -> anyhow::Result<()> {
     const INPUT: &'static str = "ckczppom";
 
     assert_eq!(117946, part1_solution(INPUT));
     assert_eq!(3938038, part2_solution(INPUT));
+
+    Ok(())
 }
 
 fn crack_md5(input: &str, starts_with: &str) -> usize {

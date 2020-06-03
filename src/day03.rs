@@ -2,14 +2,13 @@ use anyhow::{anyhow, Result};
 use cgmath::vec2;
 use std::collections::HashSet;
 
-#[test]
+crate::aoc!(03);
 pub fn day03_main() -> Result<()> {
     use crate::load_input;
     let mut input = load_input(3)?;
     input.pop(); // remove newline
 
     assert_eq!(2592, part1_solution(&input)?);
-
     assert_eq!(2360, part2_solution(&input)?);
 
     Ok(())

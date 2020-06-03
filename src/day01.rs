@@ -1,8 +1,8 @@
+use crate::load_input;
 use anyhow::{anyhow, Result};
 
-#[test]
+crate::aoc!(01);
 pub fn day01_main() -> Result<()> {
-    use crate::load_input;
     let mut input = load_input(1)?;
     input.pop(); // remove newline
 

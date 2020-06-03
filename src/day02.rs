@@ -1,7 +1,7 @@
-use anyhow::{anyhow, Result};
+use anyhow::Result;
 use itertools::Itertools;
 
-#[test]
+crate::aoc!(02);
 pub fn day02_main() -> Result<()> {
     use crate::load_input;
     let input: Vec<_> = load_input(2)?
@@ -49,6 +49,6 @@ fn part2_solution(dims: &[(u32, u32, u32)]) -> u32 {
 }
 
 #[test]
-fn day02_test() {
+fn day02_examples() {
     assert_eq!(48, part2_solution(&[(2, 3, 4), (1, 1, 10)]));
 }
