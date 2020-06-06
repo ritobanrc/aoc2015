@@ -8,7 +8,7 @@ pub fn day11_main() -> Result<()> {
 
     let p1 = part1_solution(INPUT)?;
     assert_eq!("cqjxxyzz", &p1);
-    assert_eq!!("cqkaabcc", &part2_solution(&p1)?); // part 2 is just running part 1 over again
+    assert_eq!("cqkaabcc", &part2_solution(&p1)?); // part 2 is just running part 1 over again
 
     Ok(())
 }
