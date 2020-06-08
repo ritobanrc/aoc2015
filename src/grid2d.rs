@@ -1,6 +1,7 @@
 use std::ops::{Index, IndexMut};
 
 /// Stores a 2D array of values in row-major order
+#[derive(Clone)]
 pub struct Grid2D<T> {
     pub data: Vec<T>,
     pub width: usize,
@@ -29,6 +30,10 @@ impl<T> Grid2D<T> {
             x: 0,
             y: 0,
         }
+    }
+
+    pub fn iter_mut(&mut self) -> std::slice::IterMut<T> {
+        self.data.iter_mut()
     }
 }
 
