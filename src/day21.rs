@@ -140,10 +140,10 @@ struct Stats {
 }
 
 #[derive(Debug, Clone)]
-struct Player {
-    hp: i32,
-    damage: i32,
-    armor: i32,
+pub struct Player {
+    pub hp: i32,
+    pub damage: i32,
+    pub armor: i32,
 }
 
 fn part1_solution(
