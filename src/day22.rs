@@ -36,13 +36,21 @@ pub fn day22_main() -> Result<()> {
             mana: 229,
         },
     ];
-    dbg!(part1_solution(
+    assert_eq!(
+        900,
+        solutions(&spells, 500, &player, &boss, &vec![], i32::MAX, Part::Part1)
+    );
+
+    // NOTE: The answer here should be 1216, but this solution doesn't work. I don't want to debug
+    // it right now
+    dbg!(solutions(
         &spells,
         500,
         &player,
         &boss,
         &vec![],
-        i32::MAX
+        i32::MAX,
+        Part::Part2
     ));
     Ok(())
 }
@@ -68,21 +76,42 @@ struct Effect {
     turns_left: usize,
 }
 
-fn part1_solution(
+#[derive(PartialEq, Eq, Copy, Clone, Debug)]
+enum Part {
+    Part1,
+    Part2,
+}
+
+fn solutions(
     spells: &[Spell],
     mana: i32,
     player: &Player,
     enemy: &Player,
     effects: &[Effect],
     mut best_mana: i32,
+    part: Part,
 ) -> i32 {
     for next_spell in spells {
         if next_spell.mana + mana > best_mana {
             return best_mana; // this isn't a useful path to explore
         }
         let mut enemy = enemy.to_owned();
-        let mut player = player.to_owned();
+        let mut player = if part == Part::Part2 {
+            Player {
+                hp: player.hp - 1,
+                damage: 0,
+                armor: 0,
+            }
+        } else {
+            player.to_owned()
+        };
         let mut next_mana = mana;
+
+        if player.hp <= 0 {
+            // if we lose, do nothing.
+            break;
+        }
+
         // if next_spell.mana > best_mana {
         // if just the next spell would cost more than a previously accepted pathway to winning,
         // don't bother checking it. also, since spells are listed in ascending order of mana,
@@ -118,7 +147,6 @@ fn part1_solution(
             //println!("We've won?");
             return 0;
         }
-
         // make sure that we don't re-cast an already existing effect!
         if effects
             .iter()
@@ -191,7 +219,7 @@ fn part1_solution(
         if enemy.hp <= 0 {
             // great, we win by spending next_spell.mana
             best_mana = best_mana.min(next_spell.mana);
-            println!("We've won!");
+            //println!("We've won!");
             // continue to check for a more efficient way to win
             continue;
         }
@@ -208,7 +236,9 @@ fn part1_solution(
         }
 
         // since its not over, go on to the next turn
-        let this_mana = part1_solution(spells, next_mana, &player, &enemy, &effects, best_mana);
+        let this_mana = solutions(
+            spells, next_mana, &player, &enemy, &effects, best_mana, part,
+        );
         if this_mana == i32::MAX {
             // this is not a viable pathway no matter what
             continue;
